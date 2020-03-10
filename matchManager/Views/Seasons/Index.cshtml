@@ -1,0 +1,43 @@
+﻿@model IEnumerable<matchManager.Models.Season>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" onclick="Location.href('@Url.Action("Edit", "Edit", new { id=item.Id })')">Edit</button>
+                    <button type="button" class="btn btn-default" onclick="Location.href('@Url.Action("Details", "Details", new { id=item.Id })')">Details</button>
+                    <button type="button" class="btn btn-default" onclick="Location.href('@Url.Action("Delete", "Delete", new { id=item.Id })')">Delete</button>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

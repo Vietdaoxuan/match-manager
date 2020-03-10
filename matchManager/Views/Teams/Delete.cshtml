@@ -1,0 +1,52 @@
+﻿@model matchManager.Models.Team
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_matchManagementLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <h2>Delete</h2>
+    </li>
+</ol>
+
+<h3>Are you sure you want to delete this team?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            <img src="~/Content/Pictures/@Model.Picture" alt="Alternate Text" style="width:70px"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.League.Shortname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.League.Shortname)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> <br />
+        @Html.ActionLink("Back to List", "Index", new { id = Model.League.Id }, htmlAttributes: new { @class = "btn btn-default" })
+    </div>
+    }
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<matchManager.Models.Team>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_matchManagementLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <h2>Đội bóng</h2>
+    </li>
+</ol>
+<p>
+    <button class="btn btn-default" onclick="location.href=('@Url.Action("Create", "Teams")')">Tạo mới</button>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên Đội
+        </th>
+        <th>
+           Giải Đấu
+        </th>
+        <th>
+            Ảnh
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.League.FullName)
+            </td>
+            <td>
+                <img src="~/Content/Pictures/@item.Picture" alt="Alternate Text" style="width:70px" />
+            </td>
+            <td>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Edit", "Teams",new { id = item.Id})')">Edit</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Details", "Teams",new { id = item.Id})')">Details</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Delete", "Teams",new { id = item.Id})')">Delete</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("MatchesForTeams", "Matches",new { id = item.Id})')">Trận đấu</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Index", "Players",new { id = item.Id})')">Cầu thủ</button>
+            </td>
+        </tr>
+    }
+
+</table>

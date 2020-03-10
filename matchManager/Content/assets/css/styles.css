@@ -1,0 +1,77 @@
+.profile {
+    overflow: hidden;
+    margin-top: -3em;
+    z-index: 100;
+}
+.profile1 {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    height: 40px;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    opacity: 0;
+    background-color: gray;
+    margin-top: 7px;
+}
+.profile1:hover {
+    transition: opacity .5s ease-out;
+    opacity: 0.5;
+}
+.profile1 fas {
+    transition: opacity .13s ease-out;
+    color: #fff;
+}
+
+.link_suadoi{
+    text-decoration: none;
+}
+
+.icon{
+    text-align: center;
+}
+
+.fa-camera-retro {
+    color: white;
+}
+
+.profile-sidebar {
+    padding: 10px 0;
+    display: -webkit-box;
+    border-bottom: 1px solid #e9ecf2;
+    margin-left: 4px;
+}
+img{
+    width: 4em;
+    height: 85px;
+    z-index:5;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 9999px;
+    margin-right: 5px;
+}
+
+.label-success {
+    background-color: #8ad919;
+}
+
+.profile-usertitle {
+    margin: 9px;
+}
+
+.profile-usertitle-name {
+    color: wheat;
+    font-size: larger;
+}
+
+.profile-usertitle-status {
+    text-transform: uppercase;
+    color: #AAA;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}

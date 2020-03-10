@@ -1,0 +1,222 @@
+﻿@*@{
+        ViewBag.Title = "Create";
+        Layout = null;
+    }
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>SB Admin - Register</title>
+
+        <!-- Custom fonts for this template-->
+        <link href="~/Content/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+        <!-- Custom styles for this template-->
+        <link href="~/Content/assets/css/sb-admin.css" rel="stylesheet">
+
+    </head>
+
+    <body class="bg-dark">
+
+        <div class="container">
+            <div class="card card-register mx-auto mt-5">
+                <div class="card-header">Register an Account</div>
+                <div class="card-body">
+                    <form id="Registration">
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" id="UserName" name="userName" class="form-control" placeholder="User Name" required="required" autofocus="autofocus">
+                                <label for="UserName">User Name</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+                                <label for="inputEmail">Email address</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                                <label for="inputPassword">Password</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" formmethod="post" type="submit" onclick="SaveAcc()">Register</button>
+                    </form>
+                    <div class="text-center">
+                        <a class="d-block small mt-3" href="/Login/Index">Login Page</a>
+                        <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function SaveAcc() {
+                var data = $('#Registration').serialize();
+                if ($('input[name^="userName"]').val() == '') {
+                    alert("Mời nhập Tên người dùng");
+                }
+                else if ($('input[name^="email"]').val() == '') {
+                    alert("Mời nhập email");
+                }
+                else if ($('input[name^="password"]').val() == '') {
+                    alert("Mời nhập mật khẩu");
+                }
+                $.ajax({
+                    data: data,
+                    type: 'POST',
+                    url: '/Login/SaveAccount',
+                })
+                    .done(function (result) {
+                        alert(result);
+                    })
+                    .fail(function () {
+                        console.log("error");
+                    })
+                    .always(function () {
+                        console.log("complete");
+                    });
+
+            }
+        </script>*@
+
+@*<!-- Bootstrap core JavaScript-->
+        <script src="~/Content/assets/vendor/jquery/jquery.min.js"></script>
+        <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="~/Content/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    </body>
+
+    </html>*@
+
+@model matchManager.Models.Admin
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Content/assets/css/sb-admin.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+@using (Html.BeginForm("Create", "Login", FormMethod.Post, htmlAttributes: new { @enctype = "multipart/form-data" }))
+{
+    <body class="bg-dark">
+        @Html.AntiForgeryToken()
+        <div class="container">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card card-register mx-auto mt-5">
+                <div class="card-header">Register an Account</div>
+                <div class="card-body">
+                    <form id="Registration">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @for = "UserName" }):
+                            <div class="form-label-group">
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @id = "UserName", @onchange = "UserCheck()" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            <p id="status" />
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.User_Email, htmlAttributes: new { @for = "inputEmail" }):
+                            <div class="form-label-group">
+                                @Html.EditorFor(model => model.User_Email, new { htmlAttributes = new { @class = "form-control", @id = "inputEmail", @onchange = "UserCheck1()" } })
+                                @Html.ValidationMessageFor(model => model.User_Email, "", new { @class = "text-danger" })
+                            </div>
+                            <p id="status1" />
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.User_Password, htmlAttributes: new { @for = "inputPassword" }):
+                            <div class="form-label-group">
+                                @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new { @class = "form-control", @id = "inputPassword", @type = "password" } })
+                                @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @for = "inputpicture" })
+                            <div class="col-md-10">
+                                <input class="form-control" id="inputpicture" type="file" name="Picture" />
+                                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" formmethod="post" type="submit">Register</button>
+                    </form>
+                    <div class="text-center">
+                        <a class="d-block small mt-3" href="/Login/Index">Login Page</a>
+                        <a class="d-block small" href="/Login/ForgotPassword">Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function UserCheck() {
+                $("#status").html("Checking...");
+                $.post("@Url.Action("CheckAccount","Login")", {
+                    userdata: $("#UserName").val()
+                },
+                    function (data) {
+                        if (data == 0) {
+                            $("#status").html('<font color="Green"> Tên người dùng hợp lệ</font>');
+                            $("#Username").css("border-color", "Green");
+                        }
+                        else {
+                            $("#status").html('<font color="Red"> Tên người dùng đã tồn tại</font>');
+                            $("#Username").css("border-color", "Green");
+                        }
+                    });
+            }
+        </script>
+
+        <script>
+            function UserCheck1() {
+                $("#status1").html("Checking...");
+                $.post("@Url.Action("CheckEmail","Login")", {
+                    userdata: $("#inputEmail").val()
+                },
+                    function (data) {
+                        if (data == 0) {
+                            $("#status1").html('<font color="Green">Email hợp lệ</font>');
+                            $("#inputEmail").css("border-color", "Green");
+                        }
+                        else {
+                            $("#status1").html('<font color="Red"> Email đã tồn tại</font>');
+                            $("#inputEmail").css("border-color", "Green");
+                        }
+                    });
+            }
+        </script>
+    </body>
+}

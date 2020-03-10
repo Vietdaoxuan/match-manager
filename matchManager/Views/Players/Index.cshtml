@@ -1,0 +1,72 @@
+﻿@model IEnumerable<matchManager.Models.Player>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_matchManagementLayout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <h2>Cầu thủ của @Html.DisplayFor(modelItem => item.Team.FullName)</h2>
+        </li>
+    </ol>
+    break;
+}
+    <p>
+        <button class="btn btn-default" onclick="location.href=('@Url.Action("Create", "Players")')">Tạo mới</button>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team.FullName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nationality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    <img src="~/Content/Pictures/Players/@item.Picture" alt="Alternate Text" style="width:70px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Team.FullName)
+                </td>
+                <td>
+                    <button class="btn btn-default" onclick="location.href=('@Url.Action("Edit", "Players",new { id = item.Id})')">Edit</button>
+                    <button class="btn btn-default" onclick="location.href=('@Url.Action("Details", "Players",new { id = item.Id})')">Details</button>
+                    <button class="btn btn-default" onclick="location.href=('@Url.Action("Delete", "Players",new { id = item.Id})')">Delete</button>
+                </td>
+            </tr>
+        }
+
+    </table>

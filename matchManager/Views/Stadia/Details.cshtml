@@ -1,0 +1,43 @@
+﻿@model matchManager.Models.Stadium
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_matchManagementLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Stadium</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.ShortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team.ShortName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

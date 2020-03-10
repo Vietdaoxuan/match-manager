@@ -1,0 +1,181 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Quản lý trận đấu</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Content/assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <!-- Custom styles for this template-->
+    <link href="~/Content/assets/css/sb-admin.css" rel="stylesheet">
+
+    <link href="~/Content/assets/css/styles.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/ckeditor/ckeditor.js"></script>
+</head>
+
+<body id="page-top">
+    @if (Session["Email"] == null)
+    {
+        <script>
+            location.href = "/Login/Index";
+        </script>
+    }
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+        <a class="navbar-brand mr-1" href="index.html">Match Management</a>
+
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Navbar Search -->
+        @*<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>*@
+
+        <input type="button" class="btn btn-danger" style="margin-left:60em" onclick="location.href='/Login/LogOut'" value="Log out" />
+    </nav>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li id="admin" style="margin-top:35px">
+                <div class="profile-sidebar">
+                    <div class="profile-userpic">
+                        <a href="#" class="avatar">
+                            <img src="~/Content/Pictures/Admins/@Session["Picture"]" style="border-radius:50%" alt="">
+                        </a>
+                        <div class="profile">
+                            <div class="profile1">
+                                <a href="/Login/Edit/@Session["UserId"]" class="link_suadoi">
+                                    <div class="icon">
+                                        <i class="fas fa-camera-retro"></i>
+                                    </div>
+                                    Sửa đổi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-usertitle">
+                        @if (Session["UserId"] != null)
+                        {
+                           <div class="profile-usertitle-name" style="color:wheat">@Session["UserName"]</div>
+                        }
+                        <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Index" style="font-size: xx-large">
+                    <i class="fas fa-futbol"></i>
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link " href="@Url.Action("Index","Leagues")" id="pagesDropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: xx-large">
+                    <i class="fab fa-gratipay"></i>
+                    <span>Giải đấu</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("allTeams","Teams")" style="font-size: xx-large">
+                    <i class="fas fa-users"></i>
+                    <span>Đội Bóng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("allPlayers","Players")" style="font-size: xx-large">
+                    <i class="fas fa-user-check"></i>
+                    <span>Cầu thủ</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Content -->
+                <div>
+                    @RenderBody()
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Your Website 2019</span>
+                    </div>
+                </div>
+            </footer>
+
+
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/assets/js/sb-admin.min.js"></script>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

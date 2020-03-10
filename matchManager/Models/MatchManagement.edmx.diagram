@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f024e091f89b435eb6230256135091bd" Name="Diagram1">
+        <EntityTypeShape EntityType="MatchManagementModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatchManagementModel.League" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatchManagementModel.Match" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatchManagementModel.Player" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatchManagementModel.Season" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatchManagementModel.Stadium" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatchManagementModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatchManagementModel.Team" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="MatchManagementModel.FK__Matches__LeagueI__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="MatchManagementModel.FK__Teams__LeagueId__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="MatchManagementModel.FK__Matches__HomeTea__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="MatchManagementModel.FK__Matches__SeasonI__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="MatchManagementModel.FK__Matches__Stadium__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="MatchManagementModel.FK__Matches__Visitin__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="MatchManagementModel.FK__Players__TeamID__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="MatchManagementModel.FK__Stadiums__TeamId__571DF1D5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

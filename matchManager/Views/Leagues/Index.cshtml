@@ -1,0 +1,78 @@
+﻿@model PagedList.IPagedList<matchManager.Models.League>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_matchManagementLayout.cshtml";
+}
+
+<!-- Remember to include jQuery :) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <div class="input-group" style="left:55em; top:-9px">
+        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" id="myInput">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" onclick="myFunction()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <h2>Các giải đấu</h2>
+    </li>
+</ol>
+<p>
+    <button class="btn btn-default" onclick="location.href=('@Url.Action("Create", "Leagues")')">Tạo mới</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Short Name
+        </th>
+        <th>
+            Full Name
+        </th>
+        <th>
+            Picture
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="value">
+            <td>
+                @Html.DisplayFor(modelItem => item.Shortname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                <img src="~/Content/Pictures/Leagues/@item.Picture" alt="Alternate Text" style="width:70px" />
+            <td>
+                <button class="btn btn-default" rel="modal:open" onclick="location.href=('@Url.Action("Edit", "Leagues",new { id = item.Id})')">Edit</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Details", "Leagues",new { id = item.Id})')">Details</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Delete", "Leagues",new { id = item.Id})')">Delete</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Index", "Teams",new { id = item.Id})')">Đội bóng</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Index", "Matches",new { id = item.Id})')">Trận đấu</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<div style="text-align:center">
+    @Html.PagedListPager(Model, PageNumber => Url.Action("Index", new { PageNumber }))
+</div>
+
+
+
+
+
+

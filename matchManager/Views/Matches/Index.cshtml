@@ -1,0 +1,60 @@
+﻿@model IEnumerable<matchManager.Models.Match>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_matchManagementLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Round)
+        </th>
+
+        <th>
+            Đội nhà
+        </th>
+
+        <th>
+            Đội khách
+        </th>
+
+        <th>
+            Sân vận động
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Round)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Team.FullName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Team1.FullName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Stadium.FullName)
+            </td>
+
+            <td>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Edit", "Matches",new { id = item.Id})')">Edit</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Details", "Matches",new { id = item.Id})')">Details</button>
+                <button class="btn btn-default" onclick="location.href=('@Url.Action("Delete", "Matches",new { id = item.Id})')">Delete</button>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,55 @@
+﻿@model matchManager.Models.Team
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_matchManagementLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <h2>Chi tiết</h2>
+    </li>
+</ol>
+
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            <img src="~/Content/Pictures/@Model.Picture" style="width:70px" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id },htmlAttributes:new { @class = "btn btn-default"}) |
+    @Html.ActionLink("Back to List", "Index", new { id = Model.League.Id}, htmlAttributes: new { @class = "btn btn-default" })
+</p>
